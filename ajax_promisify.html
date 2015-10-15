@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        function getRequest(url) {
+
+            // ajax call and display the results
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.addEventListener('readystatechange', function () {
+                if (xhr.readyState === 4) {
+                    console.log(xhr.responseText);
+
+                    if (xhr.status === 200) {
+                        // successful - resolved
+                    } else {
+                        // unsuccessful - rejected
+                    }
+                }
+            });
+            xhr.send();
+
+        }
+
+        getRequest('https://api.github.com/search/repositories?q=nodejs');
+
+
+        // promisify the getRequest function, make calls to the following urls
+        var terms = ['nodejs', 'react', 'ember'];
+
+        // print a single object with results for all the search terms
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

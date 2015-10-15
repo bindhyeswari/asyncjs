@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+/*        function fn() {
+            console.log('Printing from fn ... ', (new Date()).getMilliseconds());
+        }
+
+
+        setTimeout(fn, 200);
+        setTimeout(fn, 200);
+        setTimeout(fn, 200);*/
+
+        function randomPrint(n, callback) {
+            // Takes a number n and prints it after a random interval
+            //todo: what is the bitwise operator and what does it do here?
+            var interval = ~~(Math.random() * 1000);
+
+            setTimeout(function () {
+                console.log('The input is ', n, ' and the interval is ', interval);
+                callback(null, {
+                    n: n,
+                    interval: interval
+                });
+            }, interval)
+
+        }
+
+        var arr_intervals = [];
+
+        // multiple async operations - cannot control the order
+        for (var i = 0; i < 4; i++) {
+            randomPrint(i, function (err, result) {
+                console.log('Running this function after the call is done. ', result);
+                arr_intervals.push(result.interval);
+                console.log(arr_intervals);
+                if (arr_intervals.length === 4) console.log(arr_intervals.reduce(function (a, b) {
+                    return a + b;
+                }));
+            });
+        }
+
+        // Print the sum of all the random intervals
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

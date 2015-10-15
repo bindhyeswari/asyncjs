@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        // ES6 - Promises
+
+        // promisify the randomPrint function
+        function createPromise(n) {
+            return new Promise(function (resolve, reject) {
+                randomPrint(n, function (err, result) {
+                    if (err) reject(err);
+                    else resolve(result);
+                });
+            });
+        }
+
+
+        function randomPrint(n, callback) {
+            // Takes a number n and prints it after a random interval
+            //todo: what is the bitwise operator and what does it do here?
+            var interval = ~~(Math.random() * 1000);
+
+            setTimeout(function () {
+                console.log('The input is ', n, ' and the interval is ', interval);
+                callback(null, {
+                    n: n,
+                    interval: interval
+                });
+            }, interval);
+        }
+
+        var promise = createPromise(10);
+        var promise1 = createPromise(100);
+        var promise2 = createPromise(1000);
+
+        /*promise.then(function (result) {
+            // invoked if the promise is fulfilled
+            console.log('Printing result object from the promise ... ', result);
+        }, function (err) {
+            // invoked if the promise is rejected
+        });*/
+
+
+        var combined_promise = Promise.all([promise, promise1, promise2]);
+
+        combined_promise.then(function (results) {
+            console.log(results);
+            console.log(results.reduce(function (sum, result) {
+                return sum + result.interval;
+            }, 0));
+        });
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
