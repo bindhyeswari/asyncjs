@@ -18,6 +18,12 @@
                     console.log(filereader.result);
                 });
 
+                filereader.addEventListener('error', function () {
+                    console.log(filereader);
+                });
+
+                filereader.readAsDataURL(this.files[0]);
+
             });
         });
 
