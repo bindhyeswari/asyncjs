@@ -16,6 +16,7 @@
 
                 filereader.addEventListener('load', function () {
                     console.log(filereader.result);
+                    updatePanel([filereader.result]);
                 });
 
                 filereader.addEventListener('error', function () {
@@ -26,6 +27,30 @@
 
             });
         });
+
+        function updatePanel(arr_data_uris) {
+            // array of data uris
+            // for Each data uri, create the image
+
+            var div = document.querySelector('.panel');
+            // clear the div
+            div.innerHTML = '';
+
+            // create an image element for each data uri
+            arr_data_uris.forEach(function (uri) {
+                createImage(uri, div);
+            });
+        }
+
+        // show the images on the div panel
+        function createImage(src, parent) {
+            // create the element
+            var img = document.createElement('img');
+            // set the src for the image element
+            img.src = src;
+            // add to parent
+            parent.appendChild(img);
+        }
 
 
     </script>
