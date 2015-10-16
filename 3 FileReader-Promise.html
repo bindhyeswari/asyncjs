@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Reader</title>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+
+        // read the files
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('input[type="file"]').addEventListener('change', function () {
+                console.log(this.files);
+
+                var filereader = new FileReader();
+
+                filereader.addEventListener('load', function () {
+                    console.log(filereader.result);
+                });
+
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+
+    <input type="file" multiple/>
+    <div class="panel">
+
+    </div>
+
+</body>
+</html>
